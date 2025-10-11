@@ -24,3 +24,29 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+ant-image,
+.ant-image-img,
+.ant-image-preview-img {
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+.ant-image-mask {
+  background: transparent !important;
+}
+
+/* Optional: round preview edges too */
+.ant-image-preview-img-wrapper {
+  border-radius: 24px !important;
+  overflow: hidden;
+}
+#nextjs__container_build_indicator,
+[id^="__next-build-watcher"],
+[id^="__next-build-indicator"],
+[id^="__next-build"],
+div[id*="__next-build"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
