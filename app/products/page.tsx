@@ -1,29 +1,33 @@
+"use client";
+
 import Link from "next/link";
 import { MENU_DATA } from "@/app/data/menuData";
-import { toSlug } from "@/lib/slugify";
+import { slugify } from "@/lib/slugify";
+
+export const runtime = "edge";
 
 export default function ProductsPage() {
-  const categories = MENU_DATA.products;
+  const categories = MENU_DATA.products ?? [];
 
   return (
-    <div className="p-10">
+    <div className="max-w-6xl mx-auto py-12 px-4">
       <h1 className="text-3xl font-bold mb-6">Products</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {categories.map((cat) => {
-          const categorySlug = toSlug(cat.title);
-
+          const catSlug = slugify(cat.title);
           return (
-            <Link
-              key={cat.title}
-              href={`/products/${categorySlug}`}
-              className="p-6 border rounded-lg hover:bg-gray-100"
-            >
-              <h2 className="text-xl font-semibold">{cat.title}</h2>
-            </Link>
+            <li key={cat.title} className="p-5 border rounded-lg shadow-sm bg-white">
+              <Link
+                className="font-semibold text-lg text-blue-700"
+                href={`/products/${catSlug}`}
+              >
+                {cat.title}
+              </Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 }

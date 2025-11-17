@@ -1,37 +1,38 @@
+"use client";
+
 import Link from "next/link";
 import { MENU_DATA } from "@/app/data/menuData";
-import { toSlug } from "@/lib/slugify";
+import { slugify } from "@/lib/slugify";
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
+export const runtime = "edge";
+
+export default function ProductCategoryPage({ params }: any) {
+  const { category } = params;
+
   const categories = MENU_DATA.products;
+  const cat = categories.find((c) => slugify(c.title) === category);
 
-  const category = categories.find(
-    (cat) => toSlug(cat.title) === params.category
-  );
-
-  if (!category) {
-    return <div className="p-10 text-red-600">Category not found</div>;
-  }
+  if (!cat) return <div className="p-10 text-red-600">Category not found</div>;
 
   return (
-    <div className="p-10">
-      <h1 className="text-3xl font-bold mb-4">{category.title}</h1>
+    <div className="max-w-6xl mx-auto py-12 px-4">
+      <h1 className="text-3xl font-bold mb-6">{cat.title}</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {category.items.map((item) => {
-          const itemSlug = toSlug(item.label);
-
+      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {cat.items.map((item) => {
+          const itemSlug = slugify(item.label);
           return (
-            <Link
-              key={item.label}
-              href={`/products/${params.category}/${itemSlug}`}
-              className="p-6 border rounded-lg hover:bg-gray-100"
-            >
-              <h2 className="text-xl font-semibold">{item.label}</h2>
-            </Link>
+            <li key={item.label} className="p-5 border rounded-lg shadow-sm bg-white">
+              <Link
+                className="font-semibold text-lg text-blue-700"
+                href={`/products/${category}/${itemSlug}`}
+              >
+                {item.label}
+              </Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 }

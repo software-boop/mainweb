@@ -1,32 +1,30 @@
+"use client";
+
 import Link from "next/link";
-import slugify from "slugify";
 import { MENU_DATA } from "@/app/data/menuData";
+import { slugify } from "@/lib/slugify";
+
+export const runtime = "edge";
 
 export default function ServicesPage() {
-  const categories = MENU_DATA.services;
+  const categories = MENU_DATA.services ?? [];
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">Our Services</h1>
+    <div className="max-w-6xl mx-auto py-12 px-4">
+      <h1 className="text-3xl font-bold mb-6">Services</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {categories.map((cat) => {
-          const catSlug = slugify(cat.title, { lower: true });
-
+          const slug = slugify(cat.title);
           return (
-            <Link
-              key={cat.title}
-              href={`/services/${catSlug}`}
-              className="border p-4 rounded-xl hover:bg-gray-100 transition"
-            >
-              <div className="flex items-center gap-3">
-                <img src={cat.titleIcon} className="w-10 h-10" />
-                <h2 className="text-xl font-semibold">{cat.title}</h2>
-              </div>
-            </Link>
+            <li key={cat.title} className="p-5 border rounded-lg shadow-sm bg-white">
+              <Link className="text-lg text-blue-700" href={`/services/${slug}`}>
+                {cat.title}
+              </Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 }

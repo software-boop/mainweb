@@ -1,39 +1,34 @@
+"use client";
+
 import { MENU_DATA } from "@/app/data/menuData";
-import { toSlug } from "@/lib/slugify";
+import { slugify } from "@/lib/slugify";
 
-export default function ProductPage({
-  params,
-}: {
-  params: { category: string; item: string };
-}) {
-  const categories = MENU_DATA.products;
+export const runtime = "edge";
 
-  const category = categories.find(
-    (cat) => toSlug(cat.title) === params.category
-  );
+export default function SingleProductPage({ params }: any) {
+  const { category, item } = params;
 
-  if (!category) return <div>Category not found</div>;
+  const cat = MENU_DATA.products.find((c) => slugify(c.title) === category);
+  if (!cat) return <div className="p-10 text-red-600">Category not found</div>;
 
-  const product = category.items.find(
-    (p) => toSlug(p.label) === params.item
-  );
-
-  if (!product) return <div>Product not found</div>;
+  const product = cat.items.find((i) => slugify(i.label) === item);
+  if (!product) return <div className="p-10 text-red-600">Product not found</div>;
 
   return (
-    <div className="p-10">
+    <div className="max-w-4xl mx-auto py-12 px-4">
       <h1 className="text-3xl font-bold mb-4">{product.label}</h1>
 
-      <img src={product.image} className="w-80 rounded mb-4" />
+      <p className="text-gray-700 mb-4">
+        {product.description ?? "No description available."}
+      </p>
 
-      <p className="text-lg mb-4">{product.description}</p>
-
-      <h2 className="text-2xl font-semibold mb-2">Features</h2>
-      <ul className="list-disc pl-6">
-        {product.features.map((f, i) => (
-          <li key={i}>{f}</li>
-        ))}
-      </ul>
+      {product.features && (
+        <ul className="list-disc ml-6 space-y-1">
+          {product.features.map((f: string) => (
+            <li key={f}>{f}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

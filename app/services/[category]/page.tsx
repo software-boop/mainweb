@@ -1,40 +1,36 @@
+"use client";
+
 import Link from "next/link";
-import slugify from "slugify";
 import { MENU_DATA } from "@/app/data/menuData";
+import { slugify } from "@/lib/slugify";
 
-export default function ServiceCategoryPage({ params }: any) {
+export const runtime = "edge";
+
+export default function ServicesCategoryPage({ params }: any) {
   const { category } = params;
-  const categories = MENU_DATA.services;
+  const cat = MENU_DATA.services.find((c) => slugify(c.title) === category);
 
-  const categoryData = categories.find(
-    (cat) => slugify(cat.title, { lower: true }) === category
-  );
-
-  if (!categoryData) {
-    return <div className="p-6 text-red-500 text-xl">Category Not Found</div>;
-  }
+  if (!cat) return <div className="p-10 text-red-600">Category not found</div>;
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">{categoryData.title}</h1>
+    <div className="max-w-6xl mx-auto py-12 px-4">
+      <h1 className="text-3xl font-bold mb-6">{cat.title}</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {categoryData.items.map((item) => {
-          const itemSlug = slugify(item.label, { lower: true });
-
+      <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {cat.items.map((item) => {
+          const itemSlug = slugify(item.label);
           return (
-            <Link
-              key={item.label}
-              href={`/services/${category}/${itemSlug}`}
-              className="border p-4 rounded-xl hover:bg-gray-100 transition"
-            >
-              <img src={item.image} className="w-full h-40 object-cover rounded" />
-              <h3 className="text-xl font-semibold mt-3">{item.label}</h3>
-              <p className="text-gray-600 text-sm mt-1">{item.description}</p>
-            </Link>
+            <li key={item.label} className="p-5 border rounded-lg shadow-sm bg-white">
+              <Link
+                className="text-lg text-blue-700"
+                href={`/services/${category}/${itemSlug}`}
+              >
+                {item.label}
+              </Link>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 }
