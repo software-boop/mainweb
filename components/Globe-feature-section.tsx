@@ -53,7 +53,7 @@ export default function Weserve({
   return (
     <section
       ref={sectionRef as any}
-      className="relative w-full mx-auto overflow-hidden rounded-3xl bg-muted border border-gray-200 dark:border-gray-800 shadow-md px-6 py-16 md:px-16 md:py-24 lg:py-28 xl:py-32   "
+      className="relative w-full mx-auto overflow-hidden rounded-3xl bg-muted border border-gray-200 shadow-md px-6 py-16 md:px-16 md:py-24 lg:py-28 xl:py-32 bg-white   "
       style={{ height: "80vh" }}
     >
       <div className="flex flex-col-reverse items-center justify-between gap-10 md:flex-row">

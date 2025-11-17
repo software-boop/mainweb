@@ -3,7 +3,7 @@
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Row, Col, Image, Typography, Tag, Space } from "antd";
-import { Linkedin, Users, MapPin } from "lucide-react";
+import { Users, MapPin } from "lucide-react";
 import { motion, MotionConfig, useReducedMotion } from "framer-motion";
 
 const { Title, Paragraph, Text } = Typography;
@@ -360,7 +360,7 @@ function TeamCard({ p }: { p: Person }) {
             display: "flex",
             flexDirection: "column",
             height: PANEL_HEIGHT,
-            background: "#fff",
+            background: "transparent", // no background color
             borderTop: "1px solid rgba(0,0,0,0.04)",
           }}
         >
@@ -383,9 +383,17 @@ function TeamCard({ p }: { p: Person }) {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`LinkedIn profile of ${p.name}`}
-                className="lnk"
+                className="lnk inline-flex items-center"
               >
-                <Linkedin size={18} color="#ffffff" strokeWidth={2.5} />
+                {/* Next.js Image has no preview overlay by default */}
+                <Image
+                  src={LinkedIn} // e.g., "/icons/linkedin-white.svg"
+                  alt="LinkedIn"
+                  width={18}
+                  height={18}
+                  className="w-[18px] h-[18px] object-contain"
+                  priority={false}
+                />
               </a>
             )}
           </div>
@@ -441,20 +449,22 @@ function TeamCard({ p }: { p: Person }) {
 
           {/* Styles */}
           <style jsx>{`
+            /* LinkedIn anchor: no background, no preview box, just the image */
             .lnk {
-              width: 34px;
-              height: 34px;
-              border-radius: 8px;
-              background-color: ${BRAND};
+              width: 18px;
+              height: 18px;
+              border-radius: 0;
+              background: transparent;
               display: inline-flex;
               align-items: center;
               justify-content: center;
               flex: 0 0 auto;
-              transition: transform 0.15s ease;
+              transition: opacity 0.15s ease;
             }
             .lnk:hover {
-              transform: translateY(-1px) scale(1.03);
+              opacity: 0.85;
             }
+
             .chip {
               background: rgba(7, 81, 138, 0.06);
               border: none;
@@ -463,6 +473,7 @@ function TeamCard({ p }: { p: Person }) {
               align-items: center;
               gap: 6px;
             }
+
             .team-card {
               transform: translateZ(0);
               transition: transform 0.2s ease, box-shadow 0.2s ease;

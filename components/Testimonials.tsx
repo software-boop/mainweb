@@ -195,7 +195,7 @@ export default function Testimonials({
     <section
       ref={sectionRef as any}
       className={[
-        "relative w-full bg-gradient-to-b from-white to-slate-50 dark:from-slate-950 dark:to-slate-900",
+        "relative w-full bg-gradient-to-b from-white to-slate-50 bg-white",
         "grid-bg",
         className || "",
       ].join(" ")}

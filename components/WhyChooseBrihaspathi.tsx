@@ -256,7 +256,7 @@ export default function WhyMinimalZigZagInteractive({
 
   return (
     <section
-      className="relative mb-0"
+      className="relative mb-0 bg-white"
       // exact 50px padding as requested
       style={{
         paddingTop: 100,
@@ -267,7 +267,7 @@ export default function WhyMinimalZigZagInteractive({
     >
       <motion.h2
         {...appear(0)}
-        className="text-3xl md:text-4xl font-semibold tracking-tight text-center"
+        className="text-3xl md:text-4xl font-semibold tracking-tight text-center text-black"
       >
         {title}
       </motion.h2>

@@ -308,7 +308,7 @@ function CleanMNCDetail({
                   onClick={() => setFeatureModal(feature)}
                 >
                   <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center">
+                    {/* <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center">
                       {featureIcons?.[i] ? (
                         <img
                           src={featureIcons[i]}
@@ -318,7 +318,7 @@ function CleanMNCDetail({
                       ) : (
                         <Info className="h-6 w-6 text-blue-600" />
                       )}
-                    </div>
+                    </div> */}
                     <div>
                       <Text strong className="text-[15px] leading-tight">
                         {feature}

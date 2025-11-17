@@ -1476,26 +1476,24 @@
 "use client";
 
 import React, { useCallback, useState } from "react";
-import { motion } from "framer-motion";
+
 import Preloader from "@/components/ui/preloader";
 // import CertificationsGallery, { certifications } from "@/components/ui/CertificationsGallery";
 // Keep your exact imports as requested:
 import HeroSection from "../components/Herosection";
 import SolutionsSection from "@/components/SolutionsSection";
-import Weserve from "@/components/Weserve";
+
 import TestimonialsCarousel from "@/components/Testimonials";
 import ChatPanel from "@/components/ChatPanel";
 // import { StickyFooter } from "@/components/ui/Footers";
 import WhyChooseBrihaspathi from "@/components/WhyChooseBrihaspathi";
 import Featured_05 from "@/components/Globe-feature-section";
-import { ClientPageRoot } from "next/dist/client/components/client-page";
-import ClientsPage from "@/components/Client";
+
 import ClientsRibbon from "@/components/Client";
-import { News_Cycle } from "next/font/google";
+
 // import Updates from "@/components/updates-with-gallery";
 
 import CertificationsGrid from "@/components/CertificationsGrid";
-import OrgTreeInteractive from "@/components/OrgTreeInteractive";
 
 // import CatalogFamiliesPublicAxios from "@/components/CatalogFamiliesPublicAxios";
 // import CatalogItemsManager from "@/components/CatalogItemsManager";
@@ -1515,7 +1513,11 @@ export default function DemoPage() {
       {showPreloader && <Preloader onComplete={handleComplete} />}
 
       {/* Main content shows underneath; preloader overlays it */}
-      <div className={showPreloader ? "pointer-events-none select-none" : ""}>
+      <div
+        className={
+          showPreloader ? "pointer-events-none select-none" : " bg-white"
+        }
+      >
         <main id="main">
           <div className="relative">
             <HeroSection />
@@ -1581,10 +1583,9 @@ export default function DemoPage() {
           />
         </div> */}
         {/* <Updates /> */}
-
-        <div className="p-6  content-center">
+        <div className="p-6  content-center  bg-white">
           {" "}
-          <h2 className="mb-4 text-lg font-semibold text-center">
+          <h2 className="mb-4  font-bold text-center text-black text-4xl ">
             Certifications & Empanelments
           </h2>
           <CertificationsGrid

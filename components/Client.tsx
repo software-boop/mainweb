@@ -189,7 +189,7 @@ function IconRow({
 
   return (
     <div
-      className="group relative w-full overflow-hidden select-none"
+      className="group relative w-full overflow-hidden select-none bg-white"
       aria-label={title}
       style={
         {
@@ -365,7 +365,7 @@ export default function ClientsMarqueeHero({
 
   return (
     <section
-      className="relative py-24 overflow-hidden bg-white dark:bg-black"
+      className="relative py-24 overflow-hidden bg-white "
       style={
         {
           ["--fade-bg" as any]: "var(--fade-color, #fff)",
@@ -375,7 +375,7 @@ export default function ClientsMarqueeHero({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0.04)_1px,transparent_1px)] [background-size:24px_24px]" />
       <div className="relative max-w-7xl mx-auto px-6 text-center">
         <span
-          className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm rounded-full border bg-white dark:bg-black"
+          className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm rounded-full border bg-white "
           style={{ borderColor: brandHex, color: brandHex }}
         >
           <Image

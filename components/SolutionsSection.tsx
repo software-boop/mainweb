@@ -150,6 +150,7 @@ const solutions = [
     description:
       "Multi-modal biometric systems combining fingerprint, facial recognition, and card-based access for maximum security.",
     features: [
+      
       "Face Recognition",
       "Fingerprint",
       "Card Access",
