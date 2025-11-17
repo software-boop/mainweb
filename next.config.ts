@@ -6,6 +6,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // DO NOT add experimental.runtime
 };
 
 export default nextConfig;

@@ -3,7 +3,7 @@
 import { MENU_DATA } from "@/app/data/menuData";
 import { slugify } from "@/lib/slugify";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export default function SingleProductPage({ params }: any) {
   const { category, item } = params;

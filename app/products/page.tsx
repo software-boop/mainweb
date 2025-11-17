@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MENU_DATA } from "@/app/data/menuData";
 import { slugify } from "@/lib/slugify";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export default function ProductsPage() {
   const categories = MENU_DATA.products ?? [];
